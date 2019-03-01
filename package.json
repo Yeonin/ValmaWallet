@@ -1,0 +1,24 @@
+{
+  "name": "valmawallet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "electron": "^4.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yeonin/ValmaWallet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yeonin/ValmaWallet/issues"
+  },
+  "homepage": "https://github.com/Yeonin/ValmaWallet#readme"
+}
