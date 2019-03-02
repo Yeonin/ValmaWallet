@@ -7,7 +7,9 @@
     "electron": "^4.0.6",
     "nfc-pcsc": "^0.7.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "node-key-sender": "^1.0.11"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron ."
