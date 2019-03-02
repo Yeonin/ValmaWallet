@@ -14,7 +14,7 @@ nfc.on('reader', reader => {
     // reader.aid = 'F222222222';
     reader.on('card', card => {
         console.log(card.uid);
-        ks.sendKeys(card.uid)
+        ks.sendKeys(card.uid.toString())
     });
 });
  
