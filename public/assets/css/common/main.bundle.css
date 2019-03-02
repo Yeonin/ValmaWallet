@@ -4586,13 +4586,13 @@ a:link.btn.btn-sm {
 }
 
 .lg-text {
-    font-size: 1em !important;
+    font-size: 1.5em !important;
 }
 
 .btn.btn-lg,
 a:link.btn.btn-lg {
     padding: 25vh 25% !important;
-    font-size: 1em;
+    font-size: 1.5em;
     line-height: 0.2;
     height: auto;
     text-align: center;
