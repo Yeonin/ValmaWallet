@@ -4586,23 +4586,18 @@ a:link.btn.btn-sm {
 }
 
 .lg-text {
-    font-size: 500% !important;
+    font-size: 1em !important;
 }
 
 .btn.btn-lg,
 a:link.btn.btn-lg {
-    padding: 25% 50px !important;
-    font-size: 500%;
+    padding: 25vh 25% !important;
+    font-size: 1em;
     line-height: 0.2;
     height: auto;
+    text-align: center;
 }
 
-.btn.btn-lg i,
-a:link.btn.btn-lg i {
-    vertical-align: top;
-    margin: -10px 0 0 5px;
-    font-size: 20px
-}
 
 .btn i,
 a:link.btn i {
