@@ -4587,6 +4587,7 @@ a:link.btn.btn-sm {
 
 .lg-text {
     font-size: 1.5em !important;
+    font-weight: bold;
 }
 
 .btn.btn-lg,

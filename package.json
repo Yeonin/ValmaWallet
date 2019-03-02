@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "electron": "^4.0.6"
+    "electron": "^4.0.6",
+    "nfc-pcsc": "^0.7.1"
   },
   "devDependencies": {},
   "scripts": {
