@@ -36,7 +36,6 @@ function addprod() {
     });
 }
 function remstud(id) {
-    alert("Remove student")
     $.ajax({
         url: "http://159.89.202.21/remstud",
         type: "POST",
