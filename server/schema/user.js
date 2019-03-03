@@ -26,7 +26,8 @@ module.exports = {
         },
         uid: {
             type: String,
-            required: [true, "Please put the uid."]
+            required: [true, "Please put the uid."],
+            unique: true
         },
         balance: {
             type: Number,

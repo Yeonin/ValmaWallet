@@ -36,6 +36,8 @@ function addprod() {
     });
 }
 
+
+
 function loadproducts(){
-    
+
 }

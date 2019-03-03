@@ -70,7 +70,7 @@ router.post('/addstud', function (req, res, next) {
       if (err) {
         res.send({
           error: true,
-          message: "Some error has occured. Code 1000"
+          message: "NFC card already used."
         })
       } else {
         res.send({
