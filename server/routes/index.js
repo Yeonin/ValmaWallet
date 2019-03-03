@@ -6,6 +6,24 @@ router.get('/', function (req, res, next) {
   res.send("WELCOME")
 });
 
+//GET
+router.get('/products', function (req, res, next) {
+  userSchemas.Products.find({},function(err,data){
+    if(err){
+      res.send({
+        error: true,
+        message: err
+      })
+    }else{
+      res.send({
+        error: false,
+        message: data
+      })
+    }
+  })
+});
+
+
 //ADD STUDENT
 router.post('/addstud', function (req, res, next) {
   var Student = new userSchemas.Student({
@@ -86,4 +104,143 @@ router.post('/addprod', function (req, res, next) {
     })
   }
 });
+
+router.post('/sell', function (req, res, next) {
+  userSchemas.Student.find({
+    uid: req.body.uid
+  }, function (err, data) {
+    if (data == null) {
+      res.send({
+        error: true,
+        message: "UID not found. Please retry."
+      })
+    } else {
+      if (data.balance > req.body.amount) {
+        data.balance -= parseInt(req.body.amount)
+        data.save(function (err, data) {
+          if (err) {
+            res.send({
+              error: true,
+              message: err
+            })
+          } else {
+            if (parseInt(req.body.amount) > 0) {
+              var log = new userSchemas.selllog({
+                uid: req.body.uid,
+                products: req.body.products,
+                total: req.body.amount
+              })
+              var errors = log.validateSync()
+              if (errors != null) {
+                if (errors.errors["uid"]) {
+                  res.send({
+                    error: true,
+                    message: errors.errors["uid"].message
+                  })
+                } else if (errors.errors["total"]) {
+                  res.send({
+                    error: true,
+                    message: errors.errors["total"].message
+                  })
+                } else {
+                  res.redirect("../404")
+                }
+              } else {
+                log.save(function (err, data) {
+                  if (err) {
+                    res.send({
+                      error: true,
+                      message: "Some error has occured. Code 1002"
+                    })
+                  } else {
+                    res.send({
+                      error: false,
+                      message: "Successfully sold."
+                    })
+                  }
+                })
+              }
+            } else {
+              res.send({
+                error: true,
+                message: "No products added. Please put something on the cart."
+              })
+            }
+          }
+        })
+      } else {
+        res.send({
+          error: true,
+          message: "Insufficient balance. Please top up."
+        })
+      }
+    }
+  })
+});
+router.post('/topup', function (req, res, next) {
+  userSchemas.Student.find({
+    uid: req.body.uid
+  }, function (err, data) {
+    if (data == null) {
+      res.send({
+        error: true,
+        message: "UID not found. Please retry."
+      })
+    } else {
+        data.balance += parseInt(req.body.amount)
+        data.save(function (err, data) {
+          if (err) {
+            res.send({
+              error: true,
+              message: err
+            })
+          } else {
+            if (parseInt(req.body.amount) > 0) {
+              var log = new userSchemas.addlog({
+                uid: req.body.uid,
+                amount: req.body.amount,
+              })
+              var errors = log.validateSync()
+              if (errors != null) {
+                if (errors.errors["uid"]) {
+                  res.send({
+                    error: true,
+                    message: errors.errors["uid"].message
+                  })
+                } else if (errors.errors["amount"]) {
+                  res.send({
+                    error: true,
+                    message: errors.errors["amount"].message
+                  })
+                } else {
+                  res.redirect("../404")
+                }
+              } else {
+                log.save(function (err, data) {
+                  if (err) {
+                    res.send({
+                      error: true,
+                      message: "Some error has occured. Code 1003"
+                    })
+                  } else {
+                    res.send({
+                      error: false,
+                      message: "Successfully added."
+                    })
+                  }
+                })
+              }
+            } else {
+              res.send({
+                error: true,
+                message: "No products added. Please put something on the cart."
+              })
+            }
+          }
+        })
+    
+    }
+  })
+});
+
 module.exports = router;

@@ -36,14 +36,14 @@ module.exports = {
     selllog: mongoose.model("sell", {
         uid: {
             type: String,
-            required: [true, "Please put the uid."]
+            required: [true, "UID not found. Please retry."]
         },
         products: [{
             type: mongoose.Schema.Types.ObjectId
         }],
         total: {
             type: Number,
-            required: [true, "Please put the total."]
+            required: [true, "No products added. Please put something on the cart."]
         },
         date: {
             type: Date,
@@ -53,7 +53,7 @@ module.exports = {
     addlog: mongoose.model("topup", {
         uid: {
             type: String,
-            required: [true, "Please put the uid."]
+            required: [true, "UID not found. Please retry."]
         },
         amount: {
             type: Number,

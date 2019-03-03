@@ -7,6 +7,9 @@ function addstud() {
         success: function (result) {
             if (result.error) {
                 LoginError(result.message)
+                setTimeout(function () {
+                    location.reload();
+                }, 500);
             } else {
                 LoginSuccess(result.message)
             }
@@ -23,9 +26,16 @@ function addprod() {
         success: function (result) {
             if (result.error) {
                 LoginError(result.message)
+                setTimeout(function () {
+                    location.reload();
+                }, 500);
             } else {
                 LoginSuccess(result.message)
             }
         }
     });
+}
+
+function loadproducts(){
+    
 }
