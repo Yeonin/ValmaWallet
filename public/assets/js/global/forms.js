@@ -154,12 +154,6 @@ function addbal() {
         }
     })
 }
-
-
-
-function removecart(item) {
-
-}
 //SWEETALERTS
 
 //ADD BALANCE

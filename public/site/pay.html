@@ -135,26 +135,6 @@
             document.getElementById("total").innerText = totalprice + " PHP"
             pay()
         }
-
-        function test() {
-            $.get("http://159.89.202.21/html", function (data) {
-                console.log(data)
-                swal({
-                    html: data,
-                    showCloseButton: false,
-                    showCancelButton: false,
-                    showConfirmButton: false
-                });
-                $("#cancelBtn").click(function () {
-                    console.log("cancel")
-                });
-                $("#confirmBtn").click(function () {
-                    console.log("confirm")
-                    //handle your confirm button being clicked
-                });
-            });
-        }
-
         function pay() {
             if (totalprice > 0) {
                 var tablehtml = ''
@@ -163,7 +143,7 @@
                         item.name +
                         ' </h1> </td><td class="align-middle text-center"><h1 class="rm-text"> ' +
                         item.price +
-                        ' PHP</h1></td><td class="align-middle text-center"><button id="tester" class="btn btn-danger btn-block btn-outline">TEST</button></td></tr>'
+                        ' PHP</h1></td></tr>'
                 })
                 swal.fire({
                     title: 'CART',
@@ -221,11 +201,12 @@
                                 }).then((data) => {
                                     if (result.value.error == false) {
                                         $.ajax({
-                                            url: "http://159.89.202.21/topup",
+                                            url: "http://159.89.202.21/sell",
                                             type: "POST",
                                             data: {
                                                 uid: result.value.message[0].uid,
-                                                amount: data.value
+                                                amount: totalprice,
+                                                products: currentcart
                                             },
                                             dataType: "json",
                                             success: function (result) {
