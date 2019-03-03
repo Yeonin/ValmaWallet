@@ -254,7 +254,7 @@ router.post('/sell', function (req, res, next) {
 });
 
 router.post('/topup', function (req, res, next) {
-  userSchemas.Student.find({
+  userSchemas.Student.findOne({
     uid: req.body.uid,
   }, function (err, data) {
     if (data == null) {

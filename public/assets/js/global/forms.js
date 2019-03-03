@@ -149,10 +149,6 @@
                                 }
                             }
                         });
-                        Swal.fire({
-                            title: data.value.message[0].name,
-                            text: `Balance: ` + data.value.message[0].balance,
-                        })
                     }
                 })
 
