@@ -4589,7 +4589,10 @@ a:link.btn.btn-sm {
     font-size: 1.5em !important;
     font-weight: bold;
 }
-
+.rm-text {
+    font-size: 1em !important;
+    font-weight: bold;
+}
 .btn.btn-lg,
 a:link.btn.btn-lg {
     padding: 25vh 25% !important;
@@ -4599,6 +4602,14 @@ a:link.btn.btn-lg {
     text-align: center;
 }
 
+.btn.btn-rm,
+a:link.btn.btn-rm {
+    padding: 5vh !important;
+    font-size: 1em;
+    line-height: 0.2;
+    height: auto;
+    text-align: center;
+}
 
 .btn i,
 a:link.btn i {

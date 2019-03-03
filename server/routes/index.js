@@ -22,7 +22,21 @@ router.get('/products', function (req, res, next) {
     }
   })
 });
-
+router.get('/students', function (req, res, next) {
+  userSchemas.Student.find({},function(err,data){
+    if(err){
+      res.send({
+        error: true,
+        message: err
+      })
+    }else{
+      res.send({
+        error: false,
+        message: data
+      })
+    }
+  })
+});
 
 //ADD STUDENT
 router.post('/addstud', function (req, res, next) {

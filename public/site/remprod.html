@@ -46,69 +46,16 @@
                                 dir="ltr">
                                 <table id="remprod" class="table table-striped">
                                     <tbody>
-                                        <tr>
-                                            <td class="align-middle text-center">
-                                                <h1 class="lg-text">PRODUCT NAME</h1>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-danger btn-block btn-outline btn-lg">REMOVE
-                                                    PRODUCT</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="align-middle text-center">
-                                                <h1 class="lg-text">PRODUCT NAME</h1>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-danger btn-block btn-outline btn-lg">REMOVE
-                                                    PRODUCT</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="align-middle text-center">
-                                                <h1 class="lg-text">PRODUCT NAME</h1>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-danger btn-block btn-outline btn-lg">REMOVE
-                                                    PRODUCT</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="align-middle text-center">
-                                                <h1 class="lg-text">PRODUCT NAME</h1>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-danger btn-block btn-outline btn-lg">REMOVE
-                                                    PRODUCT</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="align-middle text-center">
-                                                <h1 class="lg-text">PRODUCT NAME</h1>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-danger btn-block btn-outline btn-lg">REMOVE
-                                                    PRODUCT</button>
-                                            </td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                        <div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical"
-                            style="display: block;">
-                            <div class="mCSB_draggerContainer">
-                                <div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 220px; max-height: 380px; top: 0px;">
-                                    <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
-                                </div>
-                                <div class="mCSB_draggerRail"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-6 p-0">
-                    <a href="products.html"><button class="btn btn-info btn-block btn-outline btn-lg">PRODUCTS</button></a>
+                <a href="products.html"><button class="btn btn-info btn-block btn-outline btn-lg">PRODUCTS</button></a>
                 <a href="home.html"><button class="btn btn-warning btn-block btn-outline btn-lg">MAIN MENU</button></a>
             </div>
             <div class="col-6 p-0">
@@ -132,6 +79,30 @@
     <!-- ================== GLOBAL APP SCRIPTS ==================-->
     <script src="../assets/js/global/app.js"></script>
     <script src="../assets/js/global/forms.js"></script>
+    <!-- PAGE LEVEL SCRIPTS -->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://159.89.202.21/products",
+                type: "GET",
+                dataType: "json",
+                success: function (result) {
+                    if (result.error == false) {
+                        result.message.forEach(function (product) {
+                            console.log(product)
+                            $("table tbody").append(
+                                '<tr> <td class = "align-middle text-center"> <h1 class = "rm-text"> ' +
+                                product.name +
+                                ' </h1> </td> <td> <button class="btn btn-danger btn-block btn-outline btn-rm" onclick="remprod("' +
+                                product._id + '")"> REMOVE </button> </td> </tr>'
+                            );
+                        })
+                    } else {
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
