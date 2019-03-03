@@ -109,7 +109,7 @@
                                 product.name +
                                 ' </h1> </td><td class="align-middle text-center"><h1 class="rm-text"> ' +
                                 product.price +
-                                ' PHP</h1></td> <td> <button class="btn btn-success btn-block btn-outline btn-rm" onclick="addcart(' +
+                                ' PHP</h1></td> <td> <button class="btn btn-success btn-block btn-outline btn-rm" onClick="addcart(' +
                                 products.indexOf(product) +
                                 ')"> ADD </button> </td> </tr>'
                             );
@@ -118,12 +118,139 @@
                 }
             });
         });
+        $("#tester").click(function () {
+            alert("Handler for .click() called.");
+        });
 
         function addcart(item) {
             currentcart.push(products[item])
             totalprice += parseInt(products[item].price)
             document.getElementById("total").innerText = totalprice + " PHP"
-            console.log(currentcart)
+        }
+
+        function remcart(item) {
+            console.log(item)
+            totalprice -= parseInt(currentcart[item].price)
+            currentcart.splice(item, 1)
+            document.getElementById("total").innerText = totalprice + " PHP"
+            pay()
+        }
+
+        function test() {
+            $.get("http://159.89.202.21/students", function (data) {
+                console.log(data)
+                swal({
+                    html: data,
+                    showCloseButton: false,
+                    showCancelButton: false,
+                    showConfirmButton: false
+                });
+                $("#cancelBtn").click(function () {
+                    console.log("cancel")
+                });
+                $("#confirmBtn").click(function () {
+                    console.log("confirm")
+                    //handle your confirm button being clicked
+                });
+            });
+        }
+
+        function pay() {
+            if (totalprice > 0) {
+                var tablehtml = ''
+                currentcart.forEach(function (item) {
+                    tablehtml += '<tr> <td class="align-middle text-center"> <h1 class="rm-text"> ' +
+                        item.name +
+                        ' </h1> </td><td class="align-middle text-center"><h1 class="rm-text"> ' +
+                        item.price +
+                        ' PHP</h1></td><td class="align-middle text-center"><button id="tester" class="btn btn-danger btn-block btn-outline">TEST</button></td></tr>'
+                })
+                swal.fire({
+                    title: 'CART',
+                    html: '<table class="table table-striped"><tbody>' + tablehtml + '</tbody></table>',
+                    showCancelButton: true,
+                    closeOnCancel: true,
+                    confirmButtonText: 'Confirm',
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((result) => {
+                    if (result.value) {
+                        swal.fire({
+                            title: 'SCAN THE CARD',
+                            input: 'text',
+                            inputAttributes: {
+                                autocapitalize: 'off',
+                                maxlength: 8
+                            },
+                            showCancelButton: true,
+                            closeOnCancel: true,
+                            confirmButtonText: 'Confirm',
+                            showLoaderOnConfirm: true,
+                            preConfirm: (login) => {
+                                return fetch(`http://159.89.202.21/student/${login}`)
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error(response.statusText)
+                                        }
+                                        response = response.json()
+                                        if (response.error) {
+                                            LoginError(result.message)
+                                        } else {
+                                            return response
+                                        }
+
+                                    })
+                                    .catch(error => {
+                                        Swal.showValidationMessage(
+                                            `Request failed: ${error}`
+                                        )
+                                    })
+                            },
+                            allowOutsideClick: () => !Swal.isLoading()
+                        }).then((result) => {
+                            if (result.value.error == false) {
+                                uid = result.value.uid
+                                swal.fire({
+                                    title: result.value.message[0].name,
+                                    text: `Balance before: ` + result.value.message[0].balance,
+                                    text: `Balance after: ` + (result.value.message[0].balance -
+                                        totalprice),
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Confirm',
+                                    showLoaderOnConfirm: true,
+                                    allowOutsideClick: () => !Swal.isLoading()
+                                }).then((data) => {
+                                    if (result.value.error == false) {
+                                        $.ajax({
+                                            url: "http://159.89.202.21/topup",
+                                            type: "POST",
+                                            data: {
+                                                uid: result.value.message[0].uid,
+                                                amount: data.value
+                                            },
+                                            dataType: "json",
+                                            success: function (result) {
+                                                console.log(result.message)
+                                                if (result.error) {
+                                                    LoginError(result.message)
+                                                    setTimeout(function () {
+                                                        location.reload();
+                                                    }, 500);
+                                                } else {
+                                                    LoginSuccess(result.message)
+                                                }
+                                            }
+                                        });
+                                    }
+                                })
+
+                            }
+                        })
+                    }
+
+                })
+            } else {
+                LoginError("No items on cart!")
+            }
         }
     </script>
 </body>

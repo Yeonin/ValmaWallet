@@ -62,6 +62,9 @@ router.get('/student/:id', function (req, res, next) {
     }
   })
 });
+router.get('/html', function (req, res, next) {
+  res.send('<html> <!--custom.html--><button id="confirmBtn">confirm<button><button id="cancelBtn">cancel<button><html>')
+});
 //ADD STUDENT
 router.post('/addstud', function (req, res, next) {
   var Student = new userSchemas.Student({
