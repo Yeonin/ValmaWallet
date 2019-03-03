@@ -39,7 +39,7 @@ module.exports = {
             required: [true, "Please put the uid."]
         },
         products: [{
-            type: mongoose.Types.ObjectId
+            type: mongoose.Schema.Types.ObjectId
         }],
         total: {
             type: Number,
