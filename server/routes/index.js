@@ -40,7 +40,7 @@ router.get('/students', function (req, res, next) {
 router.get('/student/:id', function (req, res, next) {
   console.log(req)
   userSchemas.Student.find({
-    uid: req.query.id
+    uid: req.params.id
   }, function (err, data) {
     if (err) {
       res.send({
