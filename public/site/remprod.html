@@ -93,8 +93,8 @@
                             $("table tbody").append(
                                 '<tr> <td class = "align-middle text-center"> <h1 class = "rm-text"> ' +
                                 product.name +
-                                ' </h1> </td> <td> <button class="btn btn-danger btn-block btn-outline btn-rm" onclick="remprod("' +
-                                product._id + '")"> REMOVE </button> </td> </tr>'
+                                ' </h1> </td> <td> <button class="btn btn-danger btn-block btn-outline btn-rm" onclick="remprod(`' +
+                                product._id + '`)"> REMOVE </button> </td> </tr>'
                             );
                         })
                     } else {

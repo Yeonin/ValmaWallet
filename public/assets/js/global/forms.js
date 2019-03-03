@@ -54,7 +54,6 @@ function remstud(id) {
     });
 }
 function remprod(id) {
-    alert("Remove product")
     $.ajax({
         url: "http://159.89.202.21/remprod",
         type: "POST",
