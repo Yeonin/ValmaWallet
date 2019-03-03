@@ -1774,7 +1774,7 @@ html {
     .card-group.card-group-lg {
         display: block;
         width: 100%;
-        margin-bottom: .75rem;
+        margin-bottom: 0;
         table-layout: fixed;
         border-spacing: 1.25rem 0
     }
@@ -3456,7 +3456,7 @@ h5 {
 .card {
     box-shadow: 0 10px 40px 0 rgba(18, 106, 211, .07), 0 2px 9px 0 rgba(18, 106, 211, .06);
     border: none;
-    margin-bottom: 1.875rem;
+    margin-bottom: 0;
     transition: all .3s ease
 }
 

@@ -37,7 +37,23 @@ router.get('/students', function (req, res, next) {
     }
   })
 });
-
+router.get('/student/:id', function (req, res, next) {
+  userSchemas.Student.find({
+    uid: req.query.id
+  }, function (err, data) {
+    if (err) {
+      res.send({
+        error: true,
+        message: err
+      })
+    } else {
+      res.send({
+        error: false,
+        message: data
+      })
+    }
+  })
+});
 //ADD STUDENT
 router.post('/addstud', function (req, res, next) {
   var Student = new userSchemas.Student({
@@ -84,13 +100,13 @@ router.post('/addstud', function (req, res, next) {
 
 //REMOVE STUDENT
 router.post('/remstud', function (req, res, next) {
-  userSchemas.Student.findByIdAndDelete(req.body.id,function(err,data){
-    if(err){
+  userSchemas.Student.findByIdAndDelete(req.body.id, function (err, data) {
+    if (err) {
       res.send({
         error: true,
         message: err
       })
-    }else{
+    } else {
       res.send({
         error: false,
         message: "Successfully removed."
@@ -139,13 +155,13 @@ router.post('/addprod', function (req, res, next) {
 });
 //REMOVE PRODUCT
 router.post('/remprod', function (req, res, next) {
-  userSchemas.Product.findByIdAndDelete(req.body.id,function(err,data){
-    if(err){
+  userSchemas.Product.findByIdAndDelete(req.body.id, function (err, data) {
+    if (err) {
       res.send({
         error: true,
         message: err
       })
-    }else{
+    } else {
       res.send({
         error: false,
         message: "Successfully removed."
