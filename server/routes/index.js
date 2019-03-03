@@ -195,6 +195,7 @@ router.post('/remprod', function (req, res, next) {
 
 //SELL
 router.post('/sell', function (req, res, next) {
+  console.log(req.body)
   userSchemas.Student.findOne({
     uid: req.body.uid
   }, function (err, data) {
