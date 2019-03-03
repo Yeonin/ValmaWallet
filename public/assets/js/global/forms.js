@@ -91,12 +91,18 @@
             confirmButtonText: 'Confirm',
             showLoaderOnConfirm: true,
             preConfirm: (login) => {
-                return fetch(`https://api.github.com/users/${login}`)
+                return fetch(`http://159.89.202.21/student/${login}`)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error(response.statusText)
                         }
-                        return response.json()
+                        response = response.json()
+                        if(response.error){
+                            LoginError(result.message)
+                        }else{
+                            return response
+                        }
+                        
                     })
                     .catch(error => {
                         Swal.showValidationMessage(
@@ -106,12 +112,50 @@
             },
             allowOutsideClick: () => !Swal.isLoading()
         }).then((result) => {
-            console.log(result)
-            if (result.value) {
-                Swal.fire({
-                    title: ``,
-                    imageUrl: result.value.avatar_url
+            if (result.value.error == false) {
+                uid = result.value.uid
+                swal.fire({
+                    title: result.value.message[0].name,
+                    text: `Balance: ` + result.value.message[0].balance,
+                    input: 'number',
+                    inputAttributes: {
+                        autocapitalize: 'off',
+                        placeholder: 'Amount'
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: 'Confirm',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((data) => {
+                    console.log(data)
+                    console.log(result.value)
+                    if (result.value.error == false) {
+                        $.ajax({
+                            url: "http://159.89.202.21/topup",
+                            type: "POST",
+                            data: {
+                                uid: result.value.message[0].uid,
+                                amount: result.value
+                            },
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.error) {
+                                    LoginError(result.message)
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 500);
+                                } else {
+                                    LoginSuccess(result.message)
+                                }
+                            }
+                        });
+                        Swal.fire({
+                            title: data.value.message[0].name,
+                            text: `Balance: ` + data.value.message[0].balance,
+                        })
+                    }
                 })
+
             }
         })
     }

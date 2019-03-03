@@ -48,10 +48,18 @@ router.get('/student/:id', function (req, res, next) {
         message: err
       })
     } else {
-      res.send({
-        error: false,
-        message: data
-      })
+      if(data.length < 1){
+        res.send({
+          error: true,
+          message: "Card not found."
+        })
+      }else{
+        res.send({
+          error: false,
+          message: data
+        })
+      }
+
     }
   })
 });
@@ -244,9 +252,10 @@ router.post('/sell', function (req, res, next) {
     }
   })
 });
+
 router.post('/topup', function (req, res, next) {
   userSchemas.Student.find({
-    uid: req.body.uid
+    uid: req.body.uid,
   }, function (err, data) {
     if (data == null) {
       res.send({
@@ -254,6 +263,7 @@ router.post('/topup', function (req, res, next) {
         message: "UID not found. Please retry."
       })
     } else {
+      console.log(data)
       data.balance += parseInt(req.body.amount)
       data.save(function (err, data) {
         if (err) {
