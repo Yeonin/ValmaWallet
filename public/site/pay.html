@@ -36,15 +36,26 @@
     <!-- START APP WRAPPER -->
     <div class="p-5">
         <div class="row m-0">
-            <div class="col-6 p-0">
+            <div class="col-8 p-0">
                 <div class="card">
-                    <div class="card-body mCustomScrollbar _mCS_2 mCS-autoHide" style="max-height: 100vh; position: relative; overflow: visible;"
+                    <div class="card-body mCustomScrollbar _mCS_2 mCS-autoHide" style="height: 100vh; position: relative; overflow: visible;"
                         data-scroll="minimal-dark">
                         <div id="mCSB_2" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" tabindex="0"
                             style="max-height: 5000px;">
                             <div id="mCSB_2_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;"
                                 dir="ltr">
                                 <table id="remprod" class="table table-striped">
+                                    <thead>
+                                        <th>
+                                            Total:
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                        <th id="total">
+                                            0 PHP
+                                        </th>
+                                    </thead>
                                     <tbody>
 
                                     </tbody>
@@ -54,31 +65,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 p-0">
-                    <div class="card">
-                            <div class="card-body mCustomScrollbar _mCS_2 mCS-autoHide" style="max-height: 100vh; position: relative; overflow: visible;"
-                                data-scroll="minimal-dark">
-                                <div id="mCSB_2" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" tabindex="0"
-                                    style="height: 50vh">
-                                    <div id="mCSB_2_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;"
-                                        dir="ltr">
-                                        <table id="cart" class="table table-striped">
-                                            <thead>
-
-                                            </thead>
-                                            <tbody>
-        
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                <a href="home.html"><button class="btn btn-warning btn-block btn-outline btn-lg">MAIN MENU</button></a>
+            <div class="col-4 p-0">
+                <button class="btn btn-success btn-block btn-outline btn-lg" onclick="pay()">PAY</button>
+                <a href="home.html"><button class="btn btn-warning btn-block btn-outline btn-lg">MENU</button></a>
             </div>
-            <div class="col-6 p-0">
 
-            </div>
         </div>
     </div>
     <!-- END CONTENT WRAPPER -->
@@ -94,6 +85,7 @@
     <script src="../assets/vendor/switchery-npm/index.js"></script>
     <script src="../assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="../assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="../assets/js/components/custom-scrollbar.js"></script>
     <!-- ================== GLOBAL APP SCRIPTS ==================-->
     <script src="../assets/js/global/app.js"></script>
     <script src="../assets/js/global/forms.js"></script>
@@ -101,6 +93,7 @@
     <script>
         var currentcart = []
         var products = []
+        var totalprice = 0
         $(document).ready(function () {
             $.ajax({
                 url: "http://159.89.202.21/products",
@@ -109,21 +102,29 @@
                 success: function (result) {
                     if (result.error == false) {
                         products = result.message
+                        console.log(products)
                         result.message.forEach(function (product) {
-                            console.log(product)
                             $("#remprod tbody").append(
                                 '<tr> <td class="align-middle text-center"> <h1 class="rm-text"> ' +
                                 product.name +
-                                ' </h1> </td><td class="align-middle text-center"><h1 class="rm-text"> ' + product.price + ' PHP</h1></td> <td> <button class="btn btn-success btn-block btn-outline btn-rm" onclick="addcart(`' +
-                                product._id + '`)"> ADD </button> </td> </tr>'
+                                ' </h1> </td><td class="align-middle text-center"><h1 class="rm-text"> ' +
+                                product.price +
+                                ' PHP</h1></td> <td> <button class="btn btn-success btn-block btn-outline btn-rm" onclick="addcart(' +
+                                products.indexOf(product) +
+                                ')"> ADD </button> </td> </tr>'
                             );
                         })
-                    } else {
-                    }
+                    } else {}
                 }
             });
-            
         });
+
+        function addcart(item) {
+            currentcart.push(products[item])
+            totalprice += parseInt(products[item].price)
+            document.getElementById("total").innerText = totalprice + " PHP"
+            console.log(currentcart)
+        }
     </script>
 </body>
 
