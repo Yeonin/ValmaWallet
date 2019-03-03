@@ -87,6 +87,7 @@ function addbal() {
             autocapitalize: 'off',
             maxlength: 8
         },
+
         showCancelButton: true,
         confirmButtonText: 'Confirm',
         showLoaderOnConfirm: true,
@@ -120,12 +121,17 @@ function addbal() {
                 input: 'number',
                 inputAttributes: {
                     autocapitalize: 'off',
-                    placeholder: 'Amount'
+                    placeholder: 'Amount',
+                    id: 'amount',
+                    class: 'keyboard'
                 },
                 showCancelButton: true,
                 confirmButtonText: 'Confirm',
                 showLoaderOnConfirm: true,
-                allowOutsideClick: () => !Swal.isLoading()
+                onBeforeOpen: () => {
+                    $('#amount').keyboard({type:'numpad'});
+                },
+                allowOutsideClick: false
             }).then((data) => {
                 if (result.value.error == false) {
                     $.ajax({
