@@ -139,6 +139,7 @@
                             },
                             dataType: "json",
                             success: function (result) {
+                                console.log(result.message)
                                 if (result.error) {
                                     LoginError(result.message)
                                     setTimeout(function () {

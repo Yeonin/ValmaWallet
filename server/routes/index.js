@@ -38,7 +38,6 @@ router.get('/students', function (req, res, next) {
   })
 });
 router.get('/student/:id', function (req, res, next) {
-  console.log(req)
   userSchemas.Student.find({
     uid: req.params.id
   }, function (err, data) {
@@ -263,7 +262,7 @@ router.post('/topup', function (req, res, next) {
         message: "UID not found. Please retry."
       })
     } else {
-      console.log(data)
+      console.log(req.body)
       data.balance += parseInt(req.body.amount)
       data.save(function (err, data) {
         if (err) {
