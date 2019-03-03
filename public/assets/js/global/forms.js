@@ -17,8 +17,8 @@ $("#addprod").submit(function (event) {
 function addstud(){
     console.log("test")
     $.ajax({
-        url: "159.89.202.21:3000/addstud",
-        type: "POST",
+        url: "http://159.89.202.21/addstud",
+        type: "GET",
         data: $("#addstud").serializeJSON(),
         dataType: "json",
         success: function (result) {

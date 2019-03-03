@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "electron": "^4.0.6",
     "nfc-pcsc": "^0.7.1"
   },
