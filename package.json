@@ -13,7 +13,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "push": "git add . && git commit -m 'Update' && git push"
   },
   "repository": {
     "type": "git",
