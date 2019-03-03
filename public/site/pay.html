@@ -206,7 +206,7 @@
                                             data: {
                                                 uid: result.value.message[0].uid,
                                                 amount: totalprice,
-                                                products: currentcart
+                                                products: JSON.stringify(currentcart)
                                             },
                                             dataType: "json",
                                             success: function (result) {

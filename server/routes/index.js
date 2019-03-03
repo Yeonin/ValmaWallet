@@ -217,7 +217,7 @@ router.post('/sell', function (req, res, next) {
             if (parseInt(req.body.amount) > 0) {
               var log = new userSchemas.selllog({
                 uid: req.body.uid,
-                products: req.body.products,
+                products: JSON.parse(req.body.products),
                 total: req.body.amount
               })
               var errors = log.validateSync()
@@ -243,6 +243,7 @@ router.post('/sell', function (req, res, next) {
                       message: "Some error has occured. Code 1002"
                     })
                   } else {
+                    console.log(data)
                     res.send({
                       error: false,
                       message: "Successfully sold."
