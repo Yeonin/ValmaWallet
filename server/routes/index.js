@@ -81,12 +81,13 @@ router.get('/student/:id', function (req, res, next) {
 
 //STATISTICS
 router.get('/stats/daily', function (req, res, next) {
-  console.log(moment(moment().startOf('day')).endOf('day').toDate())
-  console.log(moment().endOf('day').toDate())
+  console.log(moment().startOf('day').toDate())
+  console.log(moment().startOf('week').toDate())
+  console.log(moment().startOf('month').toDate())
   userSchemas.selllog.find({
     date: {
       $gte: moment().startOf('day').toDate(),
-      $lte: moment(moment().startOf('day')).endOf('day').toDate()
+      $lte: moment().endOf('day').toDate()
     }
   }, function (err, data) {
     if (err) {
@@ -102,8 +103,46 @@ router.get('/stats/daily', function (req, res, next) {
     }
   })
 });
-
-
+router.get('/stats/weekly', function (req, res, next) {
+  userSchemas.selllog.find({
+    date: {
+      $gte: moment().startOf('week').toDate(),
+      $lte: moment().endOf('week').toDate()
+    }
+  }, function (err, data) {
+    if (err) {
+      res.send({
+        error: true,
+        message: err
+      })
+    } else {
+      res.send({
+        error: false,
+        message: data
+      })
+    }
+  })
+});
+router.get('/stats/monthly', function (req, res, next) {
+  userSchemas.selllog.find({
+    date: {
+      $gte: moment().startOf('month').toDate(),
+      $lte: moment().endOf('month').toDate()
+    }
+  }, function (err, data) {
+    if (err) {
+      res.send({
+        error: true,
+        message: err
+      })
+    } else {
+      res.send({
+        error: false,
+        message: data
+      })
+    }
+  })
+});
 //ADD STUDENT
 router.post('/addstud', function (req, res, next) {
   var Student = new userSchemas.Student({
