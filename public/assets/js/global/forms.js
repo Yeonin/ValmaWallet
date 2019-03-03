@@ -127,15 +127,13 @@
                     showLoaderOnConfirm: true,
                     allowOutsideClick: () => !Swal.isLoading()
                 }).then((data) => {
-                    console.log(data)
-                    console.log(result.value)
                     if (result.value.error == false) {
                         $.ajax({
                             url: "http://159.89.202.21/topup",
                             type: "POST",
                             data: {
                                 uid: result.value.message[0].uid,
-                                amount: result.value
+                                amount: data.value
                             },
                             dataType: "json",
                             success: function (result) {
