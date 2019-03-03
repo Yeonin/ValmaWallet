@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
 });
 
 //ADD PRODUCT
-router.post('/addstud', function (req, res, next) {
+router.get('/addstud', function (req, res, next) {
       var Student = new userSchemas.Student({
         name: req.body.name,
         price: req.body.price,
