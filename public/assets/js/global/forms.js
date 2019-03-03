@@ -180,7 +180,7 @@ function daily(){
                 })
                 swal({
                     title: 'DAILY STATISTICS',
-                    html: '<table class="table table-striped"><tbody><tr><td class="align-middle text-center">TOTAL INCOME:</td><td class="align-middle text-center">' + totalincome +'</td></tr><tr><td class="align-middle text-center">TOTAL TOPUPS:</td><td class="align-middle text-center">' + totaltopups +'</td></tr><tr><td class="align-middle text-center">TRANSACTION COUNT:</td><td class="align-middle text-center">' + transactions +'</td></tr><tr><td class="align-middle text-center">TOPUP COUNT:</td><td class="align-middle text-center">' + topupcount +'</td></tr></tbody></table>'
+                    html: '<table class="table table-striped"><tbody><tr><td class="align-middle text-center">TOTAL INCOME:</td><td class="align-middle text-center">' + totalincome +' PHP</td></tr><tr><td class="align-middle text-center">TOTAL TOP UPS:</td><td class="align-middle text-center">' + totaltopups +' PHP</td></tr><tr><td class="align-middle text-center">TRANSACTION COUNT:</td><td class="align-middle text-center">' + transactions +' TRANSACTIONS</td></tr><tr><td class="align-middle text-center">TOP UP COUNT:</td><td class="align-middle text-center">' + topupcount +' TOP UPS</td></tr></tbody></table>'
                 })
             }
         }
@@ -209,7 +209,7 @@ function weekly(){
                 })
                 swal({
                     title: 'WEEKLY STATISTICS',
-                    html: '<table class="table table-striped"><tbody><tr><td class="align-middle text-center">TOTAL INCOME:</td><td class="align-middle text-center">' + totalincome +'</td></tr><tr><td class="align-middle text-center">TOTAL TOPUPS:</td><td class="align-middle text-center">' + totaltopups +'</td></tr><tr><td class="align-middle text-center">TRANSACTION COUNT:</td><td class="align-middle text-center">' + transactions +'</td></tr><tr><td class="align-middle text-center">TOPUP COUNT:</td><td class="align-middle text-center">' + topupcount +'</td></tr></tbody></table>'
+                    html: '<table class="table table-striped"><tbody><tr><td class="align-middle text-center">TOTAL INCOME:</td><td class="align-middle text-center">' + totalincome +' PHP</td></tr><tr><td class="align-middle text-center">TOTAL TOP UPS:</td><td class="align-middle text-center">' + totaltopups +' PHP</td></tr><tr><td class="align-middle text-center">TRANSACTION COUNT:</td><td class="align-middle text-center">' + transactions +' TRANSACTIONS</td></tr><tr><td class="align-middle text-center">TOP UP COUNT:</td><td class="align-middle text-center">' + topupcount +' TOP UPS</td></tr></tbody></table>'
                 })
             }
         }
