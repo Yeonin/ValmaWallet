@@ -1,8 +1,8 @@
-$("#addprod").submit(function (event) {
+function addstud() {
     $.ajax({
-        url: "159.89.202.21/addprod",
+        url: "http://159.89.202.21/addstud",
         type: "POST",
-        data: $("#addprod").serializeJSON(),
+        data: $("#addstud").serializeJSON(),
         dataType: "json",
         success: function (result) {
             if (result.error) {
@@ -12,18 +12,16 @@ $("#addprod").submit(function (event) {
             }
         }
     });
-    event.preventDefault();
-});
-function addstud(){
-    console.log("test")
+}
+
+function addprod() {
     $.ajax({
-        url: "http://159.89.202.21/addstud",
+        url: "http://159.89.202.21/addprod",
         type: "POST",
-        data: $("#addstud").serializeJSON(),
+        data: $("#addprod").serializeJSON(),
         dataType: "json",
         success: function (result) {
             if (result.error) {
-                console.log(result)
                 LoginError(result.message)
             } else {
                 LoginSuccess(result.message)
