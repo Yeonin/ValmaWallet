@@ -8,6 +8,7 @@ router.get('/', function (req, res, next) {
 
 //ADD PRODUCT
 router.get('/addstud', function (req, res, next) {
+  console.log(req.body)
       var Student = new userSchemas.Student({
         name: req.body.name,
         price: req.body.price,

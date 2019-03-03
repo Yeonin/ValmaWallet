@@ -757,3 +757,18 @@ $(window).on("resize", function() {
 
 });
 })(window, document, window.jQuery);
+
+
+function LoginError(message){
+  swal({
+    type: 'error',
+    title: 'Oops...',
+    text: message
+  })
+}function LoginSuccess(message){
+  swal({
+    type: 'success',
+    title: 'Yay!',
+    text: message
+  })
+}
