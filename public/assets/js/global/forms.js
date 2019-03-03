@@ -35,7 +35,42 @@ function addprod() {
         }
     });
 }
-
+function remstud(id) {
+    $.ajax({
+        url: "http://159.89.202.21/remstud",
+        type: "POST",
+        data: {id: id},
+        dataType: "json",
+        success: function (result) {
+            if (result.error) {
+                LoginError(result.message)
+                setTimeout(function () {
+                    location.reload();
+                }, 500);
+            } else {
+                LoginSuccess(result.message)
+            }
+        }
+    });
+}
+function remprod(id) {
+    $.ajax({
+        url: "http://159.89.202.21/remprod",
+        type: "POST",
+        data: {id: id},
+        dataType: "json",
+        success: function (result) {
+            if (result.error) {
+                LoginError(result.message)
+                setTimeout(function () {
+                    location.reload();
+                }, 500);
+            } else {
+                LoginSuccess(result.message)
+            }
+        }
+    });
+}
 
 
 function loadproducts(){
