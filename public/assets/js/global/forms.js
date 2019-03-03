@@ -18,7 +18,7 @@ function addstud(){
     console.log("test")
     $.ajax({
         url: "http://159.89.202.21/addstud",
-        type: "GET",
+        type: "POST",
         data: $("#addstud").serializeJSON(),
         dataType: "json",
         success: function (result) {
