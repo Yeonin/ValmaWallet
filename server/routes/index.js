@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var userSchemas = require('../schema/user')
-const moment = require('moment')
+const moment = require('moment-timezone')
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.send("WELCOME")
@@ -63,12 +63,12 @@ router.get('/student/:id', function (req, res, next) {
         message: err
       })
     } else {
-      if(data.length < 1){
+      if (data.length < 1) {
         res.send({
           error: true,
           message: "Card not found."
         })
-      }else{
+      } else {
         res.send({
           error: false,
           message: data
@@ -81,66 +81,87 @@ router.get('/student/:id', function (req, res, next) {
 
 //STATISTICS
 router.get('/stats/daily', function (req, res, next) {
-  console.log(moment().startOf('day').toDate())
-  console.log(moment().startOf('week').toDate())
-  console.log(moment().startOf('month').toDate())
   userSchemas.selllog.find({
     date: {
-      $gte: moment().startOf('day').toDate(),
-      $lte: moment().endOf('day').toDate()
+      $gte: moment().tz('Asia/Manila').startOf('day').toDate(),
+      $lte: moment().tz('Asia/Manila').endOf('day').toDate()
     }
-  }, function (err, data) {
-    if (err) {
-      res.send({
-        error: true,
-        message: err
-      })
-    } else {
-      res.send({
-        error: false,
-        message: data
-      })
-    }
+  }, function (err, sell) {
+    userSchemas.addlog.find({
+      date: {
+        $gte: moment().tz('Asia/Manila').startOf('day').toDate(),
+        $lte: moment().tz('Asia/Manila').endOf('day').toDate()
+      }
+    }, function (err, topup) {
+      if (err) {
+        res.send({
+          error: true,
+          message: err
+        })
+      } else {
+        res.send({
+          error: false,
+          topup: topup,
+          sell: sell
+        })
+      }
+    })
   })
 });
 router.get('/stats/weekly', function (req, res, next) {
   userSchemas.selllog.find({
     date: {
-      $gte: moment().startOf('week').toDate(),
-      $lte: moment().endOf('week').toDate()
+      $gte: moment().tz('Asia/Manila').startOf('week').toDate(),
+      $lte: moment().tz('Asia/Manila').endOf('week').toDate()
     }
-  }, function (err, data) {
-    if (err) {
-      res.send({
-        error: true,
-        message: err
-      })
-    } else {
-      res.send({
-        error: false,
-        message: data
-      })
-    }
+  }, function (err, sell) {
+    userSchemas.addlog.find({
+      date: {
+        $gte: moment().tz('Asia/Manila').startOf('week').toDate(),
+        $lte: moment().tz('Asia/Manila').endOf('week').toDate()
+      }
+    }, function (err, topup) {
+      if (err) {
+        res.send({
+          error: true,
+          message: err
+        })
+      } else {
+        res.send({
+          error: false,
+          topup: topup,
+          sell: sell
+        })
+      }
+    })
   })
 });
 router.get('/stats/monthly', function (req, res, next) {
   userSchemas.selllog.find({
     date: {
-      $gte: moment().startOf('month').toDate(),
-      $lte: moment().endOf('month').toDate()
+      $gte: moment().tz('Asia/Manila').startOf('month').toDate(),
+      $lte: moment().tz('Asia/Manila').endOf('month').toDate()
     }
-  }, function (err, data) {
-    if (err) {
-      res.send({
-        error: true,
-        message: err
-      })
-    } else {
-      res.send({
-        error: false,
-        message: data
-      })
-    }
+  }, function (err, sell) {
+    userSchemas.addlog.find({
+      date: {
+        $gte: moment().tz('Asia/Manila').startOf('month').toDate(),
+        $lte: moment().tz('Asia/Manila').endOf('month').toDate()
+      }
+    }, function (err, topup) {
+      if (err) {
+        res.send({
+          error: true,
+          message: err
+        })
+      } else {
+        res.send({
+          error: false,
+          topup: topup,
+          sell: sell
+        })
+      }
+    })
   })
 });
 //ADD STUDENT
@@ -273,6 +294,7 @@ router.post('/sell', function (req, res, next) {
     } else {
       if (data.balance > req.body.amount) {
         data.balance -= parseInt(req.body.amount)
+        data.date = moment().tz('Asia/Manila').toDate()
         data.save(function (err, data) {
           if (err) {
             res.send({
@@ -347,6 +369,7 @@ router.post('/topup', function (req, res, next) {
     } else {
       console.log(req.body)
       data.balance += parseInt(req.body.amount)
+      data.date = moment().tz('Asia/Manila').toDate()
       data.save(function (err, data) {
         if (err) {
           res.send({

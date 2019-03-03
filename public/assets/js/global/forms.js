@@ -158,5 +158,29 @@ function addbal() {
 //STATS
 
 function daily(){
-    
+    $.ajax({
+        url: "http://159.89.202.21/stats/daily",
+        type: "GET",
+        dataType: "json",
+        success: function (result) {
+            if (result.error) {
+                LoginError(result.message)
+            } else {
+                var totalincome = 0
+                var totaltopups = 0
+                var topupcount = 0
+                var transactions = 0
+                result.message.forEach(function(transaction){
+                    
+                })
+                setTimeout(function () {
+                    location.reload();
+                }, 500);
+            }
+        }
+    });
+    swal({
+        title: 'DAILY STATISTICS',
+        html: '<>'
+    })
 }
