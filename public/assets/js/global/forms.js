@@ -170,17 +170,77 @@ function daily(){
                 var totaltopups = 0
                 var topupcount = 0
                 var transactions = 0
-                result.message.forEach(function(transaction){
-                    
+                result.topup.forEach(function(topup){
+                    topupcount += 1
+                    totaltopups += topup.amount
                 })
-                setTimeout(function () {
-                    location.reload();
-                }, 500);
+                result.sell.forEach(function(sell){
+                    transactions += 1
+                    totalincome += sell.total
+                })
+                swal({
+                    title: 'DAILY STATISTICS',
+                    html: '<table class="table table-striped"><tbody><tr><td class="align-middle text-center">TOTAL INCOME:</td><td class="align-middle text-center">' + totalincome +'</td></tr><tr><td class="align-middle text-center">TOTAL TOPUPS:</td><td class="align-middle text-center">' + totaltopups +'</td></tr><tr><td class="align-middle text-center">TRANSACTION COUNT:</td><td class="align-middle text-center">' + transactions +'</td></tr><tr><td class="align-middle text-center">TOPUP COUNT:</td><td class="align-middle text-center">' + topupcount +'</td></tr></tbody></table>'
+                })
             }
         }
     });
-    swal({
-        title: 'DAILY STATISTICS',
-        html: '<>'
-    })
+}
+function weekly(){
+    $.ajax({
+        url: "http://159.89.202.21/stats/weekly",
+        type: "GET",
+        dataType: "json",
+        success: function (result) {
+            if (result.error) {
+                LoginError(result.message)
+            } else {
+                var totalincome = 0
+                var totaltopups = 0
+                var topupcount = 0
+                var transactions = 0
+                result.topup.forEach(function(topup){
+                    topupcount += 1
+                    totaltopups += topup.amount
+                })
+                result.sell.forEach(function(sell){
+                    transactions += 1
+                    totalincome += sell.total
+                })
+                swal({
+                    title: 'WEEKLY STATISTICS',
+                    html: '<table class="table table-striped"><tbody><tr><td class="align-middle text-center">TOTAL INCOME:</td><td class="align-middle text-center">' + totalincome +'</td></tr><tr><td class="align-middle text-center">TOTAL TOPUPS:</td><td class="align-middle text-center">' + totaltopups +'</td></tr><tr><td class="align-middle text-center">TRANSACTION COUNT:</td><td class="align-middle text-center">' + transactions +'</td></tr><tr><td class="align-middle text-center">TOPUP COUNT:</td><td class="align-middle text-center">' + topupcount +'</td></tr></tbody></table>'
+                })
+            }
+        }
+    });
+}
+function monthly(){
+    $.ajax({
+        url: "http://159.89.202.21/stats/monthly",
+        type: "GET",
+        dataType: "json",
+        success: function (result) {
+            if (result.error) {
+                LoginError(result.message)
+            } else {
+                var totalincome = 0
+                var totaltopups = 0
+                var topupcount = 0
+                var transactions = 0
+                result.topup.forEach(function(topup){
+                    topupcount += 1
+                    totaltopups += topup.amount
+                })
+                result.sell.forEach(function(sell){
+                    transactions += 1
+                    totalincome += sell.total
+                })
+                swal({
+                    title: 'MONTHLY STATISTICS',
+                    html: '<table class="table table-striped"><tbody><tr><td class="align-middle text-center">TOTAL INCOME:</td><td class="align-middle text-center">' + totalincome +' PHP</td></tr><tr><td class="align-middle text-center">TOTAL TOP UPS:</td><td class="align-middle text-center">' + totaltopups +' PHP</td></tr><tr><td class="align-middle text-center">TRANSACTION COUNT:</td><td class="align-middle text-center">' + transactions +' TRANSACTIONS</td></tr><tr><td class="align-middle text-center">TOP UP COUNT:</td><td class="align-middle text-center">' + topupcount +' TOP UPS</td></tr></tbody></table>'
+                })
+            }
+        }
+    });
 }
