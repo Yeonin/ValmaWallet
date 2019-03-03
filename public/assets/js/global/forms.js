@@ -7,11 +7,11 @@ function addstud() {
         success: function (result) {
             if (result.error) {
                 LoginError(result.message)
+            } else {
+                LoginSuccess(result.message)
                 setTimeout(function () {
                     location.reload();
                 }, 500);
-            } else {
-                LoginSuccess(result.message)
             }
         }
     });
@@ -26,11 +26,11 @@ function addprod() {
         success: function (result) {
             if (result.error) {
                 LoginError(result.message)
+            } else {
+                LoginSuccess(result.message)
                 setTimeout(function () {
                     location.reload();
                 }, 500);
-            } else {
-                LoginSuccess(result.message)
             }
         }
     });
@@ -47,11 +47,11 @@ function remstud(id) {
         success: function (result) {
             if (result.error) {
                 LoginError(result.message)
+            } else {
+                LoginSuccess(result.message)
                 setTimeout(function () {
                     location.reload();
                 }, 500);
-            } else {
-                LoginSuccess(result.message)
             }
         }
     });
@@ -68,11 +68,11 @@ function remprod(id) {
         success: function (result) {
             if (result.error) {
                 LoginError(result.message)
+            } else {
+                LoginSuccess(result.message)
                 setTimeout(function () {
                     location.reload();
                 }, 500);
-            } else {
-                LoginSuccess(result.message)
             }
         }
     });
@@ -140,11 +140,11 @@ function addbal() {
                             console.log(result.message)
                             if (result.error) {
                                 LoginError(result.message)
+                            } else {
+                                LoginSuccess(result.message)
                                 setTimeout(function () {
                                     location.reload();
                                 }, 500);
-                            } else {
-                                LoginSuccess(result.message)
                             }
                         }
                     });
@@ -154,6 +154,9 @@ function addbal() {
         }
     })
 }
-//SWEETALERTS
 
-//ADD BALANCE
+//STATS
+
+function daily(){
+    
+}

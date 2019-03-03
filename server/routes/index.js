@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var userSchemas = require('../schema/user')
+const moment = require('moment')
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.send("WELCOME")
@@ -77,6 +78,32 @@ router.get('/student/:id', function (req, res, next) {
     }
   })
 });
+
+//STATISTICS
+router.get('/stats/daily', function (req, res, next) {
+  console.log(moment(moment().startOf('day')).endOf('day').toDate())
+  console.log(moment().endOf('day').toDate())
+  userSchemas.selllog.find({
+    date: {
+      $gte: moment().startOf('day').toDate(),
+      $lte: moment(moment().startOf('day')).endOf('day').toDate()
+    }
+  }, function (err, data) {
+    if (err) {
+      res.send({
+        error: true,
+        message: err
+      })
+    } else {
+      res.send({
+        error: false,
+        message: data
+      })
+    }
+  })
+});
+
+
 //ADD STUDENT
 router.post('/addstud', function (req, res, next) {
   var Student = new userSchemas.Student({

@@ -135,6 +135,7 @@
             document.getElementById("total").innerText = totalprice + " PHP"
             pay()
         }
+
         function pay() {
             if (totalprice > 0) {
                 var tablehtml = ''
@@ -213,11 +214,11 @@
                                                 console.log(result.message)
                                                 if (result.error) {
                                                     LoginError(result.message)
+                                                } else {
+                                                    LoginSuccess(result.message)
                                                     setTimeout(function () {
                                                         location.reload();
                                                     }, 500);
-                                                } else {
-                                                    LoginSuccess(result.message)
                                                 }
                                             }
                                         });
