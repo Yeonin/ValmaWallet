@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
 
 //GET
 router.get('/products', function (req, res, next) {
-  userSchemas.Products.find({},function(err,data){
+  userSchemas.Product.find({},function(err,data){
     if(err){
       res.send({
         error: true,
