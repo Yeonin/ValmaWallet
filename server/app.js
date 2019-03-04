@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var Handlebars = require('handlebars');
+var helpers = require('handlebars-helpers')();
+var exphbs = require('express-handlebars');
 
 var indexRouter = require('./routes/index');
 
