@@ -197,7 +197,21 @@ router.get('/tables/sell', function (req, res, next) {
     }
   })
 });
-
+router.get('/tables/topup', function (req, res, next) {
+  userSchemas.addlog.find({}).populate('stud').exec(function (err, data) {
+    if (err) {
+      res.send({
+        error: true,
+        message: err
+      })
+    } else {
+      res.render('topup', {
+        layout: false,
+        data: data
+      })
+    }
+  })
+});
 //ADD STUDENT
 router.post('/addstud', function (req, res, next) {
   var Student = new userSchemas.Student({
