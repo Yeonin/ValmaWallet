@@ -39,6 +39,10 @@ module.exports = {
             type: String,
             required: [true, "UID not found. Please retry."]
         },
+        stud:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'student'
+        },
         products: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'product'

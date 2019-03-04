@@ -183,7 +183,7 @@ router.get('/tables/students', function (req, res, next) {
   })
 });
 router.get('/tables/sell', function (req, res, next) {
-  userSchemas.selllog.find({}, function (err, data) {}).populate('products').exec(function (err, data) {
+  userSchemas.selllog.find({}, function (err, data) {}).populate('products').populate('stud').exec(function (err, data) {
     if (err) {
       res.send({
         error: true,
@@ -341,7 +341,8 @@ router.post('/sell', function (req, res, next) {
               var log = new userSchemas.selllog({
                 uid: req.body.uid,
                 products: JSON.parse(req.body.products),
-                total: req.body.amount
+                total: req.body.amount,
+                stud: data._id
               })
               var errors = log.validateSync()
               if (errors != null) {
