@@ -47,7 +47,7 @@ module.exports = {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'product'
         }],
-        total: {
+        totalamt: {
             type: Number,
             required: [true, "No products added. Please put something on the cart."]
         },

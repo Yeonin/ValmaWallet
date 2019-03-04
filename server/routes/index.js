@@ -190,7 +190,6 @@ router.get('/tables/sell', function (req, res, next) {
         message: err
       })
     } else {
-      console.log(data)
       res.render('sell', {
         layout: false,
         data: data
@@ -341,7 +340,7 @@ router.post('/sell', function (req, res, next) {
               var log = new userSchemas.selllog({
                 uid: req.body.uid,
                 products: JSON.parse(req.body.products),
-                total: req.body.amount,
+                totalamt: req.body.amount,
                 stud: data._id
               })
               var errors = log.validateSync()
@@ -351,10 +350,10 @@ router.post('/sell', function (req, res, next) {
                     error: true,
                     message: errors.errors["uid"].message
                   })
-                } else if (errors.errors["total"]) {
+                } else if (errors.errors["totalamt"]) {
                   res.send({
                     error: true,
-                    message: errors.errors["total"].message
+                    message: errors.errors["totalamt"].message
                   })
                 } else {
                   res.redirect("../404")
