@@ -190,6 +190,7 @@ router.get('/tables/sell', function (req, res, next) {
         message: err
       })
     } else {
+      console.log(data)
       res.render('sell', {
         layout: false,
         data: data
