@@ -416,6 +416,7 @@ router.post('/topup', function (req, res, next) {
             var log = new userSchemas.addlog({
               uid: req.body.uid,
               amount: req.body.amount,
+              stud: data._id
             })
             var errors = log.validateSync()
             if (errors != null) {

@@ -39,7 +39,7 @@ module.exports = {
             type: String,
             required: [true, "UID not found. Please retry."]
         },
-        stud:{
+        stud: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'student'
         },
@@ -60,6 +60,10 @@ module.exports = {
         uid: {
             type: String,
             required: [true, "UID not found. Please retry."]
+        },
+        stud: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'student'
         },
         amount: {
             type: Number,
