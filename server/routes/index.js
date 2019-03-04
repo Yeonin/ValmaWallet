@@ -176,6 +176,7 @@ router.get('/tables/students', function (req, res, next) {
       })
     } else {
       res.render('students',{
+        layout: false,
         data: data
       })
     }
