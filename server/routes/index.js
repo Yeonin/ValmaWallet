@@ -195,7 +195,6 @@ router.get('/tables/sell', function (req, res, next) {
         data: data
       })
     }
-
   })
 });
 
