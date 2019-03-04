@@ -164,6 +164,24 @@ router.get('/stats/monthly', function (req, res, next) {
     })
   })
 });
+
+
+//TABLES
+router.get('/tables/students', function (req, res, next) {
+  userSchemas.Student.find({}, function (err, data) {
+    if (err) {
+      res.send({
+        error: true,
+        message: err
+      })
+    } else {
+      res.render('students',{
+        data: data
+      })
+    }
+  })
+});
+
 //ADD STUDENT
 router.post('/addstud', function (req, res, next) {
   var Student = new userSchemas.Student({
