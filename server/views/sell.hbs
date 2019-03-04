@@ -62,21 +62,17 @@
                                                 <td class="align-middle">{{stud.name}}</td>
                                                 <td class="align-middle">{{totalamt}} PHP</td>
                                                 <td class="align-middle">
-                                                    <table class="table table-striped">
-                                                        <tbody>
-                                                            {{#forEach products}}
-                                                            <tr>
-                                                                <td>
-                                                                    {{name}}
-                                                                </td>
-                                                                <td>
-                                                                    {{price}} PHP
-                                                                </td>
-                                                            </tr>
-                                                            {{/forEach}}
-                                                        </tbody>
-                                                    </table>
-                                                <td class="align-middle">{{date}}</td>
+                                                    {{#forEach products}}
+                                                    <tr>
+                                                        <td>
+                                                        {{name}}
+                                                        </td>
+                                                        <td>
+                                                            {{price}} PHP
+                                                        </td>
+                                                    </tr>
+                                                    {{/forEach}}
+                                            <td class="align-middle">{{date}}</td>
                                             </tr>
                                             {{/forEach}}
                                         </tbody>
