@@ -55,7 +55,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr><td>{{data}}</td></tr>
+                                            {{#forEach data}}
+                                            <tr>
+                                                <td class="align-middle">{{_id}}</td>
+                                                <td class="align-middle">{{name}}</td>
+                                                <td class="align-middle">{{section}}</td>
+                                                <td class="align-middle">{{balance}} PHP</td>
+                                                <td class="align-middle">{{uid}}</td>
+                                            </tr>
+                                            {{/forEach}}
                                         </tbody>
                                     </table>
 
