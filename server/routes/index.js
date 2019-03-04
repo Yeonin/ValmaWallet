@@ -175,11 +175,27 @@ router.get('/tables/students', function (req, res, next) {
         message: err
       })
     } else {
-      res.render('students',{
+      res.render('students', {
         layout: false,
         data: data
       })
     }
+  })
+});
+router.get('/tables/sell', function (req, res, next) {
+  userSchemas.selllog.find({}, function (err, data) {}).populate('products').exec(function (err, data) {
+    if (err) {
+      res.send({
+        error: true,
+        message: err
+      })
+    } else {
+      res.render('sell', {
+        layout: false,
+        data: data
+      })
+    }
+
   })
 });
 

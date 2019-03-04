@@ -40,7 +40,8 @@ module.exports = {
             required: [true, "UID not found. Please retry."]
         },
         products: [{
-            type: mongoose.Schema.Types.ObjectId
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'product'
         }],
         total: {
             type: Number,
