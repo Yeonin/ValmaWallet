@@ -183,7 +183,7 @@ router.get('/tables/students', function (req, res, next) {
   })
 });
 router.get('/tables/sell', function (req, res, next) {
-  userSchemas.selllog.find({}, function (err, data) {}).populate('products').populate('stud').exec(function (err, data) {
+  userSchemas.selllog.find({}).populate('products').populate('stud').exec(function (err, data) {
     if (err) {
       res.send({
         error: true,
