@@ -48,10 +48,10 @@
                                         <thead>
                                             <tr>
                                                 <th>_id</th>
-                                                <th>Name</th>
-                                                <th>Section</th>
-                                                <th>Balance</th>
                                                 <th>Student ID</th>
+                                                <th>Total</th>
+                                                <th>Items</th>
+                                                <th>Transaction Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -59,8 +59,22 @@
                                             <tr>
                                                 <td class="align-middle">{{_id}}</td>
                                                 <td class="align-middle">{{uid}}</td>
-                                                <td class="align-middle">{{total}}</td>
-                                                <td class="align-middle">{{products}} PHP</td>
+                                                <td class="align-middle">{{total}} PHP</td>
+                                                <td class="align-middle">
+                                                    <table class="table table-striped">
+                                                        <tbody>
+                                                            {{#forEach products}}
+                                                            <tr>
+                                                                <td>
+                                                                    {{name}}
+                                                                </td>
+                                                                <td>
+                                                                    {{price}} PHP
+                                                                </td>
+                                                            </tr>
+                                                            {{/forEach}}
+                                                        </tbody>
+                                                    </table>
                                                 <td class="align-middle">{{date}}</td>
                                             </tr>
                                             {{/forEach}}
