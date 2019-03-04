@@ -9,7 +9,15 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
+var hbs = exphbs.create({
+  defaultLayout: 'layout',
+  helpers: helpers,
+  layoutsDir: 'views/',
+  extname: '.hbs'
+})
+
 // view engine setup
+app.engine('hbs', hbs.engine);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
