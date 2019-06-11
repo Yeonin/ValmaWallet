@@ -1,6 +1,6 @@
 function addstud() {
     $.ajax({
-        url: "http://159.89.202.21/addstud",
+        url: "http://128.199.164.186/addstud",
         type: "POST",
         data: $("#addstud").serializeJSON(),
         dataType: "json",
@@ -19,7 +19,7 @@ function addstud() {
 
 function addprod() {
     $.ajax({
-        url: "http://159.89.202.21/addprod",
+        url: "http://128.199.164.186/addprod",
         type: "POST",
         data: $("#addprod").serializeJSON(),
         dataType: "json",
@@ -38,7 +38,7 @@ function addprod() {
 
 function remstud(id) {
     $.ajax({
-        url: "http://159.89.202.21/remstud",
+        url: "http://128.199.164.186/remstud",
         type: "POST",
         data: {
             id: id
@@ -59,7 +59,7 @@ function remstud(id) {
 
 function remprod(id) {
     $.ajax({
-        url: "http://159.89.202.21/remprod",
+        url: "http://128.199.164.186/remprod",
         type: "POST",
         data: {
             id: id
@@ -92,7 +92,7 @@ function addbal() {
         confirmButtonText: 'Confirm',
         showLoaderOnConfirm: true,
         preConfirm: (login) => {
-            return fetch(`http://159.89.202.21/student/${login}`)
+            return fetch(`http://128.199.164.186/student/${login}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(response.statusText)
@@ -135,7 +135,7 @@ function addbal() {
             }).then((data) => {
                 if (result.value.error == false) {
                     $.ajax({
-                        url: "http://159.89.202.21/topup",
+                        url: "http://128.199.164.186/topup",
                         type: "POST",
                         data: {
                             uid: result.value.message[0].uid,
@@ -165,7 +165,7 @@ function addbal() {
 
 function daily(){
     $.ajax({
-        url: "http://159.89.202.21/stats/daily",
+        url: "http://128.199.164.186/stats/daily",
         type: "GET",
         dataType: "json",
         success: function (result) {
@@ -194,7 +194,7 @@ function daily(){
 }
 function weekly(){
     $.ajax({
-        url: "http://159.89.202.21/stats/weekly",
+        url: "http://128.199.164.186/stats/weekly",
         type: "GET",
         dataType: "json",
         success: function (result) {
@@ -223,7 +223,7 @@ function weekly(){
 }
 function monthly(){
     $.ajax({
-        url: "http://159.89.202.21/stats/monthly",
+        url: "http://128.199.164.186/stats/monthly",
         type: "GET",
         dataType: "json",
         success: function (result) {
