@@ -96,7 +96,7 @@
         var totalprice = 0
         $(document).ready(function () {
             $.ajax({
-                url: "http://159.89.202.21/products",
+                url: "http://128.199.164.186/products",
                 type: "GET",
                 dataType: "json",
                 success: function (result) {
@@ -167,7 +167,7 @@
                             confirmButtonText: 'Confirm',
                             showLoaderOnConfirm: true,
                             preConfirm: (login) => {
-                                return fetch(`http://159.89.202.21/student/${login}`)
+                                return fetch(`http://128.199.164.186/student/${login}`)
                                     .then(response => {
                                         if (!response.ok) {
                                             throw new Error(response.statusText)
@@ -202,7 +202,7 @@
                                 }).then((data) => {
                                     if (result.value.error == false) {
                                         $.ajax({
-                                            url: "http://159.89.202.21/sell",
+                                            url: "http://128.199.164.186/sell",
                                             type: "POST",
                                             data: {
                                                 uid: result.value.message[0].uid,
